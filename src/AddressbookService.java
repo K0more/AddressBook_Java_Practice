@@ -1,3 +1,8 @@
+import com.sun.jdi.request.ClassUnloadRequest;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressbookService {
@@ -29,4 +34,41 @@ public class AddressbookService {
         int zip = sc.nextInt();
         p.setZip(zip);
     }
+
+    public void editDetails(String n, Addressbook addressbook){
+        Iterator<Map.Entry<Integer, Person>> iterator = addressbook.contactList.entrySet().iterator();
+        boolean found = false;
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Person> entery = iterator.next();
+            Person currentperson = entery.getValue();
+            if (currentperson.getFirstname().equalsIgnoreCase(n)) {
+                setValues(currentperson);
+                System.out.println("updated details:");
+                System.out.println(display(currentperson));
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("person not found");
+        }
+
+
+    }
+
+//    public void deleteContact(String n, Addressbook addressbook) {
+//        Iterator<Map.Entry<Integer, Person>> iterator = addressbook.contactList.entrySet().iterator();
+//        while (iterator.hasNext()) {
+//            Map.Entry<Integer, Person> entry = iterator.next();
+//            Person currentperson = entry.getValue();
+//            if (currentperson.getFirstname().equalsIgnoreCase(n)) {
+//                iterator.remove();
+//                System.out.println("entry of the person is deleted");
+//                break;
+//            }
+//            else{
+//            System.out.println("inavlid, please type 'edit or 'delete'");
+//        }
+//    }
+//    }
 }

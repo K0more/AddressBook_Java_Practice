@@ -17,7 +17,7 @@ public class Person {
     }
 
     public String getCity(){
-        return getCity();
+        return city;
     }
 
     public String getState(){
