@@ -1,3 +1,8 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Objects;
+
+
 public class Person {
     private String firstname;
     private String lastname;
@@ -24,7 +29,7 @@ public class Person {
         return state;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
@@ -62,6 +67,33 @@ public class Person {
 
     public  void setEmail(String email){
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return Objects.equals(firstname, person.firstname) &&
+                Objects.equals(lastname, person.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstname, lastname);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
+                ", phoneNo=" + phoneNo +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
 
